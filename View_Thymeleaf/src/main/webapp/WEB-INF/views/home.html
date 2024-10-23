@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách học viên</title>
+</head>
+<body>
+<h1>Danh sách học viên</h1>
+<table border="1px">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Tên</th>
+        <th>Tuổi</th>
+        <th>Giới tính</th>
+        <th>Địa chỉ</th>
+        <th>Lương</th>
+        <th>Ngày sinh</th>
+        <th>Chỉnh sửa</th>
+        <th>Cập nhật</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="s : ${list}">
+        <td th:text="${s.id}"> </td>
+        <td th:text="${s.name}"></td>
+        <td th:text="${s.age}"></td>
+        <td th:text="${s.gender == 1 ? 'Nam' : 'Nữ'}"></td> <!-- Hiển thị giới tính -->
+        <td th:text="${s.address}"></td>
+        <td th:text="${#numbers.formatInteger(s.salary, 3, 'COMMA')}"></td>
+        <td th:text="${#dates.format(s.dob, 'dd-MM-yyyy')}"></td> <!-- Định dạng ngày sinh -->
+        <td><a th:href="@{/edit/{id}(id=${s.id})}">Chỉnh sửa</a></td> <!-- Link chỉnh sửa -->
+        <td><a th:href="@{/update/{id}(id=${s.id})}">Cập nhật</a></td> <!-- Link cập nhật -->
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
