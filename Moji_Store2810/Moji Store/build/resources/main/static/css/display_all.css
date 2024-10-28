@@ -1,0 +1,77 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9; /* Nền trang */
+    color: #333; /* Màu chữ */
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px; /* Khoảng cách giữa các sản phẩm */
+    padding: 20px; /* Padding cho lưới sản phẩm */
+}
+
+.product-card {
+    background-color: white; /* Màu nền của thẻ sản phẩm */
+    border: 1px solid #e0e0e0; /* Đường viền */
+    border-radius: 8px; /* Bo góc */
+    overflow: hidden; /* Ẩn các phần ra ngoài */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+    transition: transform 0.3s, box-shadow 0.3s; /* Hiệu ứng khi hover */
+}
+
+.product-card:hover {
+    transform: scale(1.05); /* Phóng to khi hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Tăng độ đổ bóng khi hover */
+}
+
+.product-image img {
+    width: 100%; /* Đảm bảo ảnh chiếm toàn bộ chiều rộng */
+    height: auto; /* Tự động điều chỉnh chiều cao */
+    border-bottom: 1px solid #e0e0e0; /* Đường viền dưới ảnh */
+}
+
+.product-info {
+    padding: 15px; /* Padding cho thông tin sản phẩm */
+}
+
+.product-title {
+    font-size: 18px; /* Kích thước chữ tiêu đề */
+    margin-bottom: 10px; /* Khoảng cách dưới tiêu đề */
+    color: #4CAF50; /* Màu chữ tiêu đề */
+    font-weight: bold; /* Đậm */
+}
+
+.product-price {
+    font-size: 16px; /* Kích thước chữ giá */
+    color: #d9534f; /* Màu giá */
+}
+
+.discount-badge {
+    background-color: #ffcc00; /* Màu nền cho badge giảm giá */
+    color: #000; /* Màu chữ trong badge */
+    padding: 5px 10px; /* Padding cho badge */
+    border-radius: 5px; /* Bo góc cho badge */
+    display: inline-block; /* Hiển thị thành block để có kích thước */
+    margin-top: 10px; /* Khoảng cách trên badge */
+}
+
+.favorite-button {
+    border: none; /* Không viền */
+    background: none; /* Không màu nền */
+    color: #d9534f; /* Màu tim yêu thích */
+    font-size: 20px; /* Kích thước chữ */
+    cursor: pointer; /* Hiển thị dấu tay khi hover */
+    margin-top: 10px; /* Khoảng cách trên nút yêu thích */
+    transition: color 0.3s; /* Hiệu ứng màu khi hover */
+}
+
+.favorite-button:hover {
+    color: #c00; /* Màu khi hover vào nút yêu thích */
+}

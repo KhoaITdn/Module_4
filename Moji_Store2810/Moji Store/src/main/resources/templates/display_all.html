@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tất cả sản phẩm - 7hFIGURE</title>
+    <link rel="stylesheet" href="/css/display_all.css">
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <div class="top-bar">
+            <div class="logo">7hFIGURE</div>
+            <div class="search-bar">
+                <input type="text" placeholder="Bạn đang tìm gì...">
+            </div>
+            <div class="user-actions">
+                <a href="#">Đăng nhập</a>
+                <a href="#">Đăng ký</a>
+                <a href="#">Giỏ hàng (0)</a>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <h1>Tất cả sản phẩm</h1>
+    <div class="filters">
+        <div>Sắp xếp:</div>
+        <div class="sort-options">
+            <div class="sort-option active">Nổi bật</div>
+            <div class="sort-option">Giá: Tăng dần</div>
+            <div class="sort-option">Giá: Giảm dần</div>
+            <div class="sort-option">Mới nhất</div>
+        </div>
+    </div>
+    <div class="product-grid">
+        <!-- Vòng lặp sản phẩm -->
+        <div th:each="p : ${list}" class="product-card">
+            <div class="product-image" style="cursor: pointer;"
+                 th:data="@{/view/{id}(id=${p.id})}"
+                 th:onclick="'window.location.href=\'' + @{/view/{id}(id=${p.id})} + '\''">
+                <img th:src="${p.image}" alt="Product Image" />
+            </div>
+
+            <div class="product-info">
+                <h3 class="product-title" th:text="${p.name}">Tên Sản Phẩm</h3>
+                <div class="product-price">
+                    <span th:text="${p.price} + 'đ'">Giá</span>
+                </div>
+                <div class="discount-badge" th:text="${p.description}"></div> <!-- Nếu có giảm giá -->
+                <button class="favorite-button">♡</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

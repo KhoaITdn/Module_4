@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gối sưởi Cute animal little things có tai sạc điện 18x26 - Mix - Moji Store</title>
+  <link rel="stylesheet" href="/css/view_product.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <div class="top-bar">
+      <div class="logo">7hFIGURE</div>
+      <div class="search-bar">
+        <input type="text" placeholder="Bạn đang tìm gì...">
+      </div>
+      <div class="user-actions">
+        <a href="#">Đăng nhập</a>
+        <a href="#">Đăng ký</a>
+        <a href="#">Giỏ hàng (0)</a>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="container">
+  <div class="product-container">
+    <div class="product-card">
+      <div class="product-image">
+        <!-- Ảnh đại diện sản phẩm -->
+        <img th:src="${product.image}" alt="Product Image" />
+      </div>
+      <div class="product-details">
+        <h1 class="product-title" th:text="${product.name}">Tên Sản Phẩm</h1>
+        <p class="product-price" th:text="${product.price} + 'đ'">Giá</p>
+<!--        <div class="quantity-select">-->
+<!--          <label>Số lượng</label>-->
+<!--          <button onclick="decrementQuantity()">-</button>-->
+<!--          <input type="number" value="1" min="1" class="quantity-input" />-->
+<!--          <button onclick="incrementQuantity()">+</button>-->
+<!--        </div>-->
+        <div class="discount-badge" th:text="${product.description}"></div> <!-- Nếu có giảm giá -->
+        <button class="favorite-button">♡</button>
+      </div>
+    </div>
+
+    <a href="#" class="add-to-cart">THÊM VÀO GIỎ HÀNG</a>
+      <a href="#" class="buy-now">MUA NGAY</a>
+      <div class="shipping-info">
+        <p>🚚 Giao hàng toàn quốc đơn hàng từ 99k</p>
+        <p>💰 COD nội thành HN, HCM</p>
+        <p>🔄 Đổi trả trong 24h</p>
+        <p>🚚 Hỗ trợ ship 20k cho đơn hàng từ 300k nội thành HN, HCMH</p>
+        <p>🚚 Hỗ trợ ship 30k cho đơn hàng từ 500k các khu vực khác</p>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
