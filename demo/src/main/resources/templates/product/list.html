@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Quản lý sản phẩm</title>
+</head>
+<body>
+<h1>Danh sách sản phẩm</h1>
+
+<!-- Form tìm kiếm -->
+<form th:action="@{/products}" method="get">
+    <input type="text" name="searchName" placeholder="Tìm kiếm theo tên sản phẩm" th:value="${searchName}" />
+
+    <select name="categoryId">
+        <option value="">Chọn loại sản phẩm</option>
+        <option th:each="category : ${categories}"
+                th:value="${category.cid}"
+                th:text="${category.name}"
+                th:selected="${category.cid == selectedCategoryId}"></option>
+    </select>
+
+    <input type="number" name="minPrice" placeholder="Giá tối thiểu" th:value="${minPrice}" />
+
+    <input type="number" name="maxPrice" placeholder="Giá tối đa" th:value="${maxPrice}" />
+
+    <button type="submit">Tìm kiếm</button>
+</form>
+
+<!-- Form xóa sản phẩm -->
+<form th:action="@{/products/delete}" method="post">
+    <table>
+        <thead>
+        <tr>
+            <th>STT</th>
+            <th>Chọn</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá bắt đầu</th>
+            <th>Loại sản phẩm</th>
+            <th>Tình trạng</th>
+            <th>Hành động</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product, iterStat : ${products}">
+            <td th:text="${iterStat.index + 1}"></td> <!-- Số thứ tự -->
+            <td><input type="checkbox" name="ids" th:value="${product.id}"/></td> <!-- Checkbox chọn -->
+            <td th:text="${product.name}"></td> <!-- Tên sản phẩm -->
+            <td th:text="${product.startingPrice}"></td> <!-- Giá bắt đầu -->
+            <td th:text="${product.category.name}"></td> <!-- Loại sản phẩm -->
+            <td th:text="${product.status}"></td> <!-- Tình trạng -->
+            <td>
+                <a th:href="@{/products/edit(id=${product.id})}">Sửa</a> |
+                <a th:href="@{/products/delete(id=${product.id})}" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');">Xóa</a>
+            </td> <!-- Hành động sửa/xóa -->
+        </tr>
+        </tbody>
+    </table>
+
+    <button type="submit">Xóa đã chọn</button>
+    <a href="/products/add">Thêm sản phẩm</a>
+</form>
+
+<!-- Phân trang -->
+<div>
+    <div th:if="${productsPage}">
+        <span>Trang: <span th:text="${productsPage.number + 1}"></span> / <span th:text="${productsPage.totalPages}"></span></span>
+        <a th:href="@{/products?page=${productsPage.number - 1}}"
+           th:classappend="${productsPage.hasPrevious() ? '' : 'disabled'}">Trang trước</a>
+        <a th:href="@{/products?page=${productsPage.number + 1}}"
+           th:classappend="${productsPage.hasNext() ? '' : 'disabled'}">Trang sau</a>
+    </div>
+</div>
+
+</body>
+</html>

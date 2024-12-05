@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/products/edit}" method="post">
+    <input type="hidden" th:field="*{id}" />
+
+    <label for="name">Tên sản phẩm:</label><br/>
+    <input type="text" id="name" th:field="*{name}" required/><br/>
+
+    <label for="startingPrice">Giá khởi điểm:</label><br/>
+    <input type="number" id="startingPrice" th:field="*{startingPrice}" min="100000" required/><br/>
+
+    <label for="status">Tình trạng:</label><br/>
+    <select id="status" th:field="*{status}" required>
+        <option th:each="status : ${statuses}" th:value="${status}" th:text="${status}" th:selected="${product.status == status}"></option>
+    </select><br/>
+
+    <label for="category">Loại sản phẩm:</label><br/>
+    <select id="category" th:field="*{category.id}" required>
+        <option th:each="category : ${categories}" th:value="${category.cid}" th:text="${category.name}"
+                th:selected="${product.category.id == category.cid}"></option>
+    </select><br/>
+
+    <button type="submit">Cập nhật</button>
+    <a href="/products">Quay lại</a>
+</form>
+
+</body>
+</html>
